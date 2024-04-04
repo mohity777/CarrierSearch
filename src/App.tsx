@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ChakraProvider } from "@chakra-ui/react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import CarrierSearchScreen from "./screens/CarrierSearchScreen";
+import BookingConfirmScreen from "./screens/BookingConfirmScreen";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <CarrierSearchScreen />,
+  },
+  {
+    path: "/:carrierId/booking/",
+    element: <BookingConfirmScreen />,
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   );
 }
 
